@@ -15,14 +15,14 @@
 <body>
 
     <nav>
-        <a href="index.html">
+        <a href="index.php">
             <img src="images/logo.png" /></a>
         <div class="nav-links" id="navlinks">
             <i class="fa fa-times" onclick="hideMenu()"></i>
             <ul>
                 <li><a href="index.php">HOME</a></li>
                 <li><a href="about.php">ABOUT</a></li>
-                <li><a href="guidence.html">GUIDENCE</a></li>
+                <li><a href="advise.php">GUIDENCE</a></li>
                 <li><a href="contact.html">CONTACT</a></li>
             </ul>
         </div>

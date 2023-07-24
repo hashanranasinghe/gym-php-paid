@@ -147,6 +147,7 @@ p{
    
 
 }
+
 .Guidence-col{
    flex-basis: 31%;
    background: #fff3f3;
@@ -404,3 +405,15 @@ h3{
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+  
+  .success {
+    background-color: green;
+    padding: 5px 10px;
+    color: white;
+    border-radius: 5px;
+    display: inline-block;
+  }
+  
+
+  

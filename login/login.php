@@ -23,14 +23,7 @@ include('../form_handler.php');
     <h1>The Fitness Master</h1>
     <h2>Login</h2>
   </div>
-  <?php
-  if (isset($_SESSION['accountCreated'])) {
-    echo $_SESSION['accountCreated'];
-    unset($_SESSION['accountCreated']);
-  }
 
-
-  ?>
   <section class="justify-content-center align-items-center m-0">
 
 
@@ -40,23 +33,33 @@ include('../form_handler.php');
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <?php
+        if (isset($_SESSION['accountCreated'])) {
+          echo $_SESSION['accountCreated'];
+          unset($_SESSION['accountCreated']);
+        }
+
+
+        ?>
+        <?php
         if (isset($_SESSION['noUser'])) {
           echo $_SESSION['noUser'];
           unset($_SESSION['noUser']);
         }
 
         ?>
+         <?php
+          if (isset($_SESSION['incorrectEmail'])) {
+            echo $_SESSION['incorrectEmail'];
+            unset($_SESSION['incorrectEmail']);
+          }
+          ?>
+          
         <form action="" method="POST">
 
 
           <!-- Email input -->
-         
-        <?php
-         if (isset($_SESSION['unSuccessful'])) {
-          echo $_SESSION['unSuccessful'];
-          unset($_SESSION['unSuccessful']);
-          }
-        ?>
+
+          <br/>
           <div class="form-outline mb-4">
             <input type="email" id="email" name="email" class="form-control form-control-lg"
               placeholder="Enter a valid email address" />
@@ -109,33 +112,39 @@ if (isset($_POST['submit'])) {
 
   $result = mysqli_query($conn, $sql);
   $count = mysqli_num_rows($result);
-
-  if ($count == 1) {
-    // If user exists, fetch the user's hashed password from the database
-    $row = mysqli_fetch_assoc($result);
-    $hashedPassword = $row['password'];
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      $_SESSION['unSuccessful'] = '<span class="fail">Invalid email format!</span>';
-      header('Location: http://localhost/gym/login/login.php');
-      exit();
-    }
-    // Verify the provided password against the hashed password
-    if (password_verify($pass, $hashedPassword)) {
-      $_SESSION['loginMessage'] = '<span class="success">Welcome ' . $email . '</span>';
-      // After successful login
-      $_SESSION['user_name'] = $row['username']; // Assuming the column name for the username is 'username' in your database
-      $_SESSION['user_email'] = $row['email'];
-      header('location: http://localhost/gym/contact.php');
-      exit();
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION['incorrectEmail'] = '<span class="fail">Invalid email format!</span>';
+    header('Location: http://localhost/gym/login/login.php');
+    exit();
+  }else{
+    if ($count == 1) {
+      // If user exists, fetch the user's hashed password from the database
+      $row = mysqli_fetch_assoc($result);
+      $hashedPassword = $row['password'];
+      // Verify the provided password against the hashed password
+      if (password_verify($pass, $hashedPassword)) {
+        $_SESSION['loginMessage'] = '<span class="success">Welcome ' . $email . '</span>';
+        // After successful login
+        $_SESSION['user_name'] = $row['username']; // Assuming the column name for the username is 'username' in your database
+        $_SESSION['user_email'] = $row['email'];
+        $_SESSION['user_id'] = $row['id'];
+        header('location: http://localhost/gym/contact.php');
+        exit();
+      } else {
+        $_SESSION['noUser'] = '<span class="fail" style="background-color: red;   padding: 5px 10px;
+        color: white;
+        border-radius: 5px;
+        display: inline-block;">Incorrect password or email!</span>';
+        header('location: http://localhost/gym/login/login.php');
+        exit();
+      }
     } else {
-      $_SESSION['noUser'] = '<span class="fail">Incorrect password!</span>';
+      $_SESSION['noUser'] = '<span class="fail">' . $email . 'User not registered!</span>';
       header('location: http://localhost/gym/login/login.php');
       exit();
     }
-  } else {
-    $_SESSION['noUser'] = '<span class="fail">' . $email . 'User not registered!</span>';
-    header('location: http://localhost/gym/login/login.php');
-    exit();
   }
+  
+  
 }
 ?>

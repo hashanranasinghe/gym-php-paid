@@ -1,5 +1,5 @@
-<?php include 'components/navbar.php' ?>
-<?php
+<?php include 'components/navbar.php';
+
 
 
 include('form_handler.php');
@@ -13,14 +13,6 @@ include('form_handler.php');
         width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
 </section>
-<?php
-if (isset($_SESSION['accountCreated'])) {
-    echo $_SESSION['accountCreated'];
-    unset($_SESSION['accountCreated']);
-}
-
-
-?>
 <section class="contact-us">
     <div class="row">
         <div class="contact-col">
@@ -51,51 +43,36 @@ if (isset($_SESSION['accountCreated'])) {
 
 
         <div class="contact-col">
-            <form action="form handler.php" method="post">
+            <?php
+            if (isset($_SESSION['addComment'])) {
+                echo $_SESSION['addComment'];
+                unset($_SESSION['addComment']);
+            }
+            ?>
+            <?php
+            if (isset($_SESSION['failComment'])) {
+                echo $_SESSION['failComment'];
+                unset($_SESSION['failComment']);
+            }
+            ?>
+            <form action="" method="POST">
+
                 <label for="name">Enter name</label>
-                <input type="text" name="name" placeholder="name" value="<?php echo $_SESSION['user_name']; ?>" required readonly>
+                <input type="text" name="name" placeholder="name" value="<?php echo $_SESSION['user_name']; ?>" required
+                    readonly>
                 <label for="email">Enter Email</label>
-                <input type="email" name="phone number" placeholder="Enter email" value="<?php echo $_SESSION['user_email']; ?>" required readonly>
+                <input type="email" name="email" placeholder="Enter email"
+                    value="<?php echo $_SESSION['user_email']; ?>" required readonly>
                 <label for="comment">Comment</label>
                 <textarea rows="8" name="comment" placeholder="comment"></textarea>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="submit" name="submit" class="btn btn-primary">Submit</button>
             </form>
 
         </div>
     </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-------Footer-------->
 <?php include 'components/footer.php' ?>
-
-
-
-
-
-
-
-
-
 
 <!----------javaScript for toggle Menu-------->
 <script>
@@ -114,3 +91,35 @@ if (isset($_SESSION['accountCreated'])) {
 </body>
 
 </html>
+
+<?php
+
+
+if (isset($_POST['submit'])) {
+    // Retrieve form data
+    $userId = $_SESSION['user_id'];
+    $des = $_POST['comment'];
+
+
+
+    $sql = "INSERT INTO workout (user_id, description) VALUES ('$userId', '$des')";
+    $result = mysqli_query($conn, $sql);
+    if ($result == true) {
+        $_SESSION['addComment'] = '
+        <span class="success" style="  background-color: green;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+  display: inline-block;">Add Comment Successfully!</span>
+ 
+      ';
+        header('location: http://localhost/gym/contact.php');
+        exit();
+    } else {
+        $_SESSION['failComment'] = '<span class="fail">Failed!</span>';
+        header('location: http://localhost/gym/contact.php');
+        exit();
+    }
+}
+
+?>

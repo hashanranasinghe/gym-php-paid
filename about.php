@@ -12,6 +12,20 @@
     </head>
     <body>
     <?php include 'components/navbar.php' ?>
+    <section class="about-us">
+            <div class="row">
+                <div class="about-col">
+                    <h1>The <strong>Fitness Master</strong></h1>
+                    <h2> "The Most Outstanding Fitness Center Complex in Sri Lanka" </h2>
+                    <p> As The Sri Lanka's Most Outstanding Fitness Center, We Offer You The Best Service With Our Consultants,Equipments And Other Resources.</p>
+                    <a href="" class=" hero-btn red-btn">EXPLORE NOW</a>
+
+                </div>
+                <div class="about-col">
+                    <img src="images/pexels-pixabay-47084.jpg">
+                </div>
+            </div>
+        </section>
         <!-----------------about us content--------->
         <?php include 'components/footer.php' ?>
 
@@ -28,41 +42,6 @@
      
 
      
-
-     
-
-     
-     <!-------Footer-------->
-     <section class="footer">
-        <h4> About us</h4>
-        <p> As The Best Fitness center Complex In Sri Lanka we Can Highly Recommend You To Come Here And Feel The Change. <br> With Our Trainers, Instructors, Consultants You Can Definitely Achieve Your Goals Successfully. </p>
-       
-
-     </section>
-
-
-
-
-
-
-
-
-
-
-
-    <!----------javaScript for toggle Menu-------->    
-<script>
-var navlinks = document.getElementById("navlinks");
-
-function showMenu(){
-    navlinks.style.right = "0";
-}
-function hideMenu(){
-    navlinks.style.right = "-200px";
-}
-   
-
-</script>
 
     </body>
 </html>
