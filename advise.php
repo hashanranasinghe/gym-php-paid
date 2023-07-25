@@ -1,5 +1,5 @@
-<?php 
-    ob_start();
+<?php
+ob_start();
 
 include 'components/navbar.php';
 
@@ -20,7 +20,7 @@ include('form_handler.php');
 
                         <p class="text-center h1 fw-bold mb-1 mx-1 mx-md-4 mt-1">Ask for Information</p>
 
-                        <form class="mx-1 mx-md-4" action="" method="POST" >
+                        <form class="mx-1 mx-md-4" action="" method="POST">
                             <div class="d-flex flex-row align-items-center mb-1">
 
                                 <?php
@@ -39,7 +39,8 @@ include('form_handler.php');
                             <div class="d-flex flex-row align-items-center mb-1">
 
                                 <div class="form-outline flex-fill mb-0">
-                                    <input type="text" id="form3Example1c" class="form-control" value="<?php echo $_SESSION['user_name']; ?>" name="name" readonly />
+                                    <input type="text" id="form3Example1c" class="form-control"
+                                        value="<?php echo $_SESSION['user_name']; ?>" name="name" readonly />
                                     <label class="form-label" for="form3Example1c">Your Name</label>
                                 </div>
                             </div>
@@ -47,7 +48,8 @@ include('form_handler.php');
                             <div class="d-flex flex-row align-items-center mb-1">
 
                                 <div class="form-outline flex-fill mb-0">
-                                    <input type="email" id="form3Example3c" class="form-control" name="email" value="<?php echo $_SESSION['user_email']; ?>" readonly />
+                                    <input type="email" id="form3Example3c" class="form-control" name="email"
+                                        value="<?php echo $_SESSION['user_email']; ?>" readonly />
                                     <label class="form-label" for="form3Example3c">Your Email</label>
                                 </div>
                             </div>
@@ -56,7 +58,7 @@ include('form_handler.php');
 
                                 <div class="form-outline flex-fill mb-0">
                                     <textarea rows="8" type="text" id="form3Example4c" class="form-control"
-                                        name="info"></textarea>
+                                        name="info" required ></textarea>
                                     <label class="form-label" for="form3Example4c">Ask</label>
                                 </div>
                             </div>
@@ -81,26 +83,6 @@ include('form_handler.php');
         </div>
     </div>
 </section>
-<!----------javaScript for toggle Menu-------->
-<script>
-
-  var navlinks = document.getElementById("navlinks");
-
-  function showMenu() {
-    navlinks.style.right = "0";
-  }
-  function hideMenu() {
-    navlinks.style.right = "-200px";
-  }
-
-
-  function redirectToPaymentPage() {
-    // Redirect the user to the payment.php page
-    window.location.href = "payment.php";
-  }
-
-
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>

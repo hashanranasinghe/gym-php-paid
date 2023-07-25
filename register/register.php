@@ -1,7 +1,7 @@
 <?php
 
 
-    ob_start();
+ob_start();
 
 include('../form_handler.php');
 
@@ -41,26 +41,40 @@ include('../form_handler.php');
                     <!-- name input -->
                     <div class="form-outline mb-4">
                         <input type="text" id="name" name="username" class="form-control form-control-lg"
-                            placeholder="Name" />
+                            placeholder="Name" required />
                         <label class="form-label" for="name">Full Name</label>
                     </div>
 
 
-
+                    <?php
+                    if (isset($_SESSION['unSuccessful'])) {
+                        echo $_SESSION['unSuccessful'];
+                        unset($_SESSION['unSuccessful']);
+                    }
+                    if (isset($_SESSION['invalid'])) {
+                        echo $_SESSION['invalid'];
+                        unset($_SESSION['invalid']);
+                    }
+                    ?>
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <input type="email" id="email" name="email" class="form-control form-control-lg"
-                            placeholder="Email" />
+                            placeholder="Email" required />
                         <label class="form-label" for="email">Email address</label>
                     </div>
 
                     <!-- phone input -->
                     <div class="form-outline mb-4">
                         <input type="number" id="phone" name="phone" class="form-control form-control-lg"
-                            placeholder="Phone Number" />
-                        <label class="form-label" for="phone">Email address</label>
+                            placeholder="Phone Number" required />
+                        <label class="form-label" for="phone">Phone Number</label>
                     </div>
-
+                    <?php
+                    if (isset($_SESSION['password'])) {
+                        echo $_SESSION['password'];
+                        unset($_SESSION['password']);
+                    }
+                    ?>
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                         <input type="password" id="password" name="password" class="form-control form-control-lg"
@@ -72,7 +86,7 @@ include('../form_handler.php');
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                         <input type="password" id="cPassword" class="form-control form-control-lg"
-                            placeholder="Confirm Password" name="cpassword" />
+                            placeholder="Confirm Password" name="cpassword" required />
                         <label class="form-label" for="cPassword">Confirm Password</label>
                     </div>
 
@@ -118,15 +132,19 @@ if (isset($_POST['submit'])) {
     $pass = $_POST['password'];
     $cPass = $_POST['cpassword'];
 
+    // Check if the email is in a valid format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['unSuccessful'] = '<span class="fail">Invalid email format!</span>';
+        $_SESSION['invalid'] = '<span class="fail"  style="padding: 5px 10px;
+        color: red;">Invalid email format!</span>';
         header('Location: http://localhost/gym/register/register.php');
         exit();
     }
+
     // Check if the passwords match
     if ($pass !== $cPass) {
-        $_SESSION['unSuccessful'] = '<span class="fail">Passwords do not match!</span>';
-        header('location: http://localhost/gym/register/register.php');
+        $_SESSION['password'] = '<span class="fail" style="padding: 5px 10px;
+        color: red;">Passwords do not match!</span>';
+        header('Location: http://localhost/gym/register/register.php');
         exit();
     }
 
@@ -141,16 +159,31 @@ if (isset($_POST['submit'])) {
 
     // Establish a database connection (assuming you have done this already)
 
+    // Check if the email is already registered
+    $checkSql = "SELECT * FROM user WHERE email = '$email'";
+    $checkResult = mysqli_query($conn, $checkSql);
+    $count = mysqli_num_rows($checkResult);
+    if ($count > 0) {
+        $_SESSION['unSuccessful'] = '<span class="fail" style="padding: 5px 10px;
+        color: red;">Email address already registered!</span>';
+        header('Location: http://localhost/gym/register/register.php');
+        exit();
+    }
 
+    // If the email is not registered, proceed to insert the new user
     $sql = "INSERT INTO user (username, email, phone_number, password) VALUES ('$username', '$email', '$phoneNumber', '$hashedPassword')";
     $result = mysqli_query($conn, $sql);
     if ($result == true) {
-        $_SESSION['accountCreated'] = '<span class="success">Account ' . $username . ' created!</span>';
-        header('location: http://localhost/gym/login/login.php');
+        $_SESSION['accountCreated'] = '<span class="success"  style="  background-color: green;
+        padding: 5px 10px;
+        color: white;
+        border-radius: 5px;
+        display: inline-block;">Account ' . $username . ' created!</span>';
+        header('Location: http://localhost/gym/login/login.php');
         exit();
     } else {
         $_SESSION['unSuccessful'] = '<span class="fail">' . $username . ' failed!</span>';
-        header('location: http://localhost/gym/register/register.php');
+        header('Location: http://localhost/gym/register/register.php');
         exit();
     }
 }

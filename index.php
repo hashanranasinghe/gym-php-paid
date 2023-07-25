@@ -1,7 +1,7 @@
 <?php include 'components/heroSection.php' ?>
 
 <!---------Guidence------------>
-<section class="Guidence">
+<section class="Guidence" id="guidence">
   <h1>Guidence we offer</h1>
   <p>"You get what you work for, not what you wish for"</p>
 
@@ -29,7 +29,7 @@
 </section>
 <!--------priority------->
 
-<section class="priority">
+<section class="priority" id="priority" >
   <h1>Our First Priority</h1>
   <p>Our Main Focus Is To Keep Your Health Best</p>
 
@@ -56,7 +56,7 @@
 </section>
 
 <!--------difference------------->
-<section class="difference">
+<section class="difference" id="difference" >
   <h1>Our Facilities</h1>
   <p>
     We Have The Sri Lanka's First Grade Fitness Consultants With World Class
@@ -84,7 +84,7 @@
 </section>
 
 <!-------testimonials------>
-<section class="testimonials">
+<section class="testimonials" id="testimonials" >
   <h1>What Our Followers Says</h1>
   <p>There Are Some Experiences That Our Followers Had Shared With Us.</p>
 

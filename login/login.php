@@ -62,14 +62,14 @@ include('../form_handler.php');
           <br/>
           <div class="form-outline mb-4">
             <input type="email" id="email" name="email" class="form-control form-control-lg"
-              placeholder="Enter a valid email address" />
+              placeholder="Enter a valid email address" required />
             <label class="form-label" for="email">Email address</label>
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
             <input type="password" id="password" name="password" class="form-control form-control-lg"
-              placeholder="Enter password" />
+              placeholder="Enter password" required />
             <label class="form-label" for="password">Password</label>
           </div>
 
@@ -108,15 +108,16 @@ if (isset($_POST['submit'])) {
   // $email = mysqli_real_escape_string($conn, $email);
   // $pass = mysqli_real_escape_string($conn, $pass);
 
-  $sql = "SELECT * FROM user WHERE email = '$email'";
 
-  $result = mysqli_query($conn, $sql);
-  $count = mysqli_num_rows($result);
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     $_SESSION['incorrectEmail'] = '<span class="fail">Invalid email format!</span>';
     header('Location: http://localhost/gym/login/login.php');
     exit();
-  }else{
+  } else{
+    $sql = "SELECT * FROM user WHERE email = '$email'";
+
+    $result = mysqli_query($conn, $sql);
+    $count = mysqli_num_rows($result);
     if ($count == 1) {
       // If user exists, fetch the user's hashed password from the database
       $row = mysqli_fetch_assoc($result);
@@ -139,7 +140,10 @@ if (isset($_POST['submit'])) {
         exit();
       }
     } else {
-      $_SESSION['noUser'] = '<span class="fail">' . $email . 'User not registered!</span>';
+      $_SESSION['noUser'] = '<span class="fail"style="background-color: red;   padding: 5px 10px;
+      color: white;
+      border-radius: 5px;
+      display: inline-block;>' . $email . ' User not registered!</span>';
       header('location: http://localhost/gym/login/login.php');
       exit();
     }

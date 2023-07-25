@@ -21,13 +21,17 @@
             <i class="fa fa-times" onclick="hideMenu()"></i>
             <ul>
                 <li><a href="index.php">HOME</a></li>
-              
-                <li><a href="about.php">ABOUT US</a></li>
+                <li><a href="#guidence">GUIDENCE</a></li>
+                <li><a href="#priority">Our Priorities</a></li>
+                <li><a href="#difference">Our Facilities</a></li>
+                <li><a href="#testimonials">Feedbacks</a></li>
+                <li><a href="#footer">About Us</a></li>
             </ul>
         </div>
 
         <i class="fa fa-bars" onclick="showMenu()"></i>
     </nav>
+
     <script>
         var navlinks = document.getElementById("navlinks");
 

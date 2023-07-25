@@ -18,7 +18,7 @@
                     <h1>The <strong>Fitness Master</strong></h1>
                     <h2> "The Most Outstanding Fitness Center Complex in Sri Lanka" </h2>
                     <p> As The Sri Lanka's Most Outstanding Fitness Center, We Offer You The Best Service With Our Consultants,Equipments And Other Resources.</p>
-                    <a href="" class=" hero-btn red-btn">EXPLORE NOW</a>
+                    <a href="advise.php" class=" hero-btn red-btn">EXPLORE NOW</a>
 
                 </div>
                 <div class="about-col">

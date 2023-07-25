@@ -64,7 +64,7 @@ include('form_handler.php');
                 <input type="email" name="email" placeholder="Enter email"
                     value="<?php echo $_SESSION['user_email']; ?>" required readonly>
                 <label for="comment">Comment</label>
-                <textarea rows="8" name="comment" placeholder="comment"></textarea>
+                <textarea rows="8" name="comment" placeholder="comment" required ></textarea>
                 <button type="submit" name="submit" class="btn btn-primary">Submit</button>
             </form>
 
@@ -74,19 +74,6 @@ include('form_handler.php');
 <!-------Footer-------->
 <?php include 'components/footer.php' ?>
 
-<!----------javaScript for toggle Menu-------->
-<script>
-    var navlinks = document.getElementById("navlinks");
-
-    function showMenu() {
-        navlinks.style.right = "0";
-    }
-    function hideMenu() {
-        navlinks.style.right = "-200px";
-    }
-
-
-</script>
 
 </body>
 

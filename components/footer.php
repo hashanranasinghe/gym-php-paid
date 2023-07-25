@@ -1,4 +1,4 @@
-<section class="footer">
+<section class="footer" id="footer" >
       <h4>About us</h4>
       <p>
         As The Best Fitness center Complex In Sri Lanka we Can Highly Recommend
