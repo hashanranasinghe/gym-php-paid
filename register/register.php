@@ -91,12 +91,13 @@ include('../form_handler.php');
                     </div>
 
 
-                    <div class="text-center text-lg-start mt-4 pt-2">
+                    <div class="text-center text-lg-start mt-4 pt-2 pb-2">
                         <button type="submit" class="btn btn-primary btn-lg"
                             style="padding-left: 2.5rem; padding-right: 2.5rem;" name="submit">Sign Up</button>
                         <p class="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="../login/login.php"
                                 class="link-danger">Login</a>
                         </p>
+                        
                     </div>
 
                 </form>
@@ -104,6 +105,7 @@ include('../form_handler.php');
         </div>
 
     </section>
+    
     <script>
         // JavaScript validation
         document.getElementById("password").addEventListener("input", function () {
@@ -174,15 +176,20 @@ if (isset($_POST['submit'])) {
     $sql = "INSERT INTO user (username, email, phone_number, password) VALUES ('$username', '$email', '$phoneNumber', '$hashedPassword')";
     $result = mysqli_query($conn, $sql);
     if ($result == true) {
-        $_SESSION['accountCreated'] = '<span class="success"  style="  background-color: green;
-        padding: 5px 10px;
-        color: white;
-        border-radius: 5px;
-        display: inline-block;">Account ' . $username . ' created!</span>';
+        $_SESSION['accountCreated'] = '<div class="alert alert-primary" role="alert">'
+        . $username . ' created!
+      </div>';
         header('Location: http://localhost/gym/login/login.php');
         exit();
     } else {
-        $_SESSION['unSuccessful'] = '<span class="fail">' . $username . ' failed!</span>';
+        $_SESSION['unSuccessful'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+        </svg>
+        <div>'
+        . $username . ' failed!
+        </div>
+      </div>';
         header('Location: http://localhost/gym/register/register.php');
         exit();
     }

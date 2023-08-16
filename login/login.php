@@ -1,9 +1,6 @@
 <?php
 
-
-include('../form_handler.php');
-
-?>
+include "../form_handler.php"; ?>
 
 
 <!DOCTYPE html>
@@ -32,27 +29,18 @@ include('../form_handler.php');
         <img src="../images/Screenshot_2021-12-18-10-04-02.png" class="rounded mx-auto d-block" alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <?php
-        if (isset($_SESSION['accountCreated'])) {
-          echo $_SESSION['accountCreated'];
-          unset($_SESSION['accountCreated']);
-        }
-
-
-        ?>
-        <?php
-        if (isset($_SESSION['noUser'])) {
-          echo $_SESSION['noUser'];
-          unset($_SESSION['noUser']);
-        }
-
-        ?>
-         <?php
-          if (isset($_SESSION['incorrectEmail'])) {
-            echo $_SESSION['incorrectEmail'];
-            unset($_SESSION['incorrectEmail']);
-          }
-          ?>
+        <?php if (isset($_SESSION["accountCreated"])) {
+            echo $_SESSION["accountCreated"];
+            unset($_SESSION["accountCreated"]);
+        } ?>
+        <?php if (isset($_SESSION["noUser"])) {
+            echo $_SESSION["noUser"];
+            unset($_SESSION["noUser"]);
+        } ?>
+         <?php if (isset($_SESSION["incorrectEmail"])) {
+             echo $_SESSION["incorrectEmail"];
+             unset($_SESSION["incorrectEmail"]);
+         } ?>
           
         <form action="" method="POST">
 
@@ -95,60 +83,67 @@ include('../form_handler.php');
 
 </html>
 
-<?php
+<?php if (isset($_POST["submit"])) {
+    echo "===========================";
+    $email = $_POST["email"];
+    $pass = $_POST["password"];
 
+    // Make sure to sanitize user input to prevent SQL injection
+    // I'll assume you have sanitized the variables in this example
+    // $email = mysqli_real_escape_string($conn, $email);
+    // $pass = mysqli_real_escape_string($conn, $pass);
 
-if (isset($_POST['submit'])) {
-  $email = $_POST['email'];
-  $pass = $_POST['password'];
-
-
-  // Make sure to sanitize user input to prevent SQL injection
-  // I'll assume you have sanitized the variables in this example
-  // $email = mysqli_real_escape_string($conn, $email);
-  // $pass = mysqli_real_escape_string($conn, $pass);
-
-
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    $_SESSION['incorrectEmail'] = '<span class="fail">Invalid email format!</span>';
-    header('Location: http://localhost/gym/login/login.php');
-    exit();
-  } else{
-    $sql = "SELECT * FROM user WHERE email = '$email'";
-
-    $result = mysqli_query($conn, $sql);
-    $count = mysqli_num_rows($result);
-    if ($count == 1) {
-      // If user exists, fetch the user's hashed password from the database
-      $row = mysqli_fetch_assoc($result);
-      $hashedPassword = $row['password'];
-      // Verify the provided password against the hashed password
-      if (password_verify($pass, $hashedPassword)) {
-        $_SESSION['loginMessage'] = '<span class="success">Welcome ' . $email . '</span>';
-        // After successful login
-        $_SESSION['user_name'] = $row['username']; // Assuming the column name for the username is 'username' in your database
-        $_SESSION['user_email'] = $row['email'];
-        $_SESSION['user_id'] = $row['id'];
-        header('location: http://localhost/gym/contact.php');
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION["incorrectEmail"] =
+            '<span class="fail">Invalid email format!</span>';
+        header("Location: http://localhost/gym/login/login.php");
         exit();
-      } else {
-        $_SESSION['noUser'] = '<span class="fail" style="background-color: red;   padding: 5px 10px;
-        color: white;
-        border-radius: 5px;
-        display: inline-block;">Incorrect password or email!</span>';
-        header('location: http://localhost/gym/login/login.php');
-        exit();
-      }
     } else {
-      $_SESSION['noUser'] = '<span class="fail"style="background-color: red;   padding: 5px 10px;
-      color: white;
-      border-radius: 5px;
-      display: inline-block;>' . $email . ' User not registered!</span>';
-      header('location: http://localhost/gym/login/login.php');
-      exit();
+        $sql = "SELECT * FROM user WHERE email = '$email'";
+
+        $result = mysqli_query($conn, $sql);
+        $count = mysqli_num_rows($result);
+        if ($count == 1) {
+            // If user exists, fetch the user's hashed password from the database
+            $row = mysqli_fetch_assoc($result);
+            $hashedPassword = $row["password"];
+            // Verify the provided password against the hashed password
+            if (password_verify($pass, $hashedPassword)) {
+                $_SESSION["loginMessage"] =
+                    '<span class="success">Welcome ' . $email . "</span>";
+                // After successful login
+                $_SESSION["user_name"] = $row["username"]; // Assuming the column name for the username is 'username' in your database
+                $_SESSION["user_email"] = $row["email"];
+                $_SESSION["user_id"] = $row["id"];
+                header("location: http://localhost/gym/contact.php");
+                exit();
+            } else {
+                $_SESSION[
+                    "noUser"
+                ] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div>
+                  Invalid Email or Password!!
+                </div>
+              </div>';
+                header("location: http://localhost/gym/login/login.php");
+                exit();
+            }
+        } else {
+            $_SESSION["noUser"] =
+                '<div class="alert alert-danger d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                </svg>
+                <div>
+                User not registered!
+                </div>
+              </div>';
+            header("location: http://localhost/gym/login/login.php");
+            exit();
+        }
     }
-  }
-  
-  
 }
 ?>

@@ -105,17 +105,14 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     if ($result == true) {
         $_SESSION['addInfo'] = '
-        <span class="success" style="  background-color: green;
-  padding: 5px 10px;
-  color: white;
-  border-radius: 5px;
-  display: inline-block;">Ask information Successfully!</span>
- 
-      ';
+        <div class="alert alert-primary" role="alert">
+        Ask information Successfully!
+      </div>';
         header('location: http://localhost/gym/advise.php');
         exit();
     } else {
-        $_SESSION['failInfo'] = '<span class="fail">Failed!</span>';
+        $_SESSION['failInfo'] = '<div class="alert alert-danger" role="alert">
+        Ask information Failed!  </div>';
         header('location: http://localhost/gym/advise.php');
         exit();
     }

@@ -93,17 +93,14 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $sql);
     if ($result == true) {
         $_SESSION['addComment'] = '
-        <span class="success" style="  background-color: green;
-  padding: 5px 10px;
-  color: white;
-  border-radius: 5px;
-  display: inline-block;">Add Comment Successfully!</span>
- 
-      ';
+        <div class="alert alert-primary" role="alert">
+        Add Comment Successfully!
+      </div>';
         header('location: http://localhost/gym/contact.php');
         exit();
     } else {
-        $_SESSION['failComment'] = '<span class="fail">Failed!</span>';
+        $_SESSION['failComment'] = '<div class="alert alert-danger" role="alert">
+        Add comment Failed!  </div>';
         header('location: http://localhost/gym/contact.php');
         exit();
     }
