@@ -120,6 +120,7 @@
       </div>
     </div>
   </div>
+  <button type="button" class="btn btn-info btn-lg btn-block" onclick="redirectToCommunityPage()">Join to Our Community</button>
 </section>
 
 <!---------call to action------->
@@ -138,6 +139,10 @@
   function redirectToPaymentPage() {
     // Redirect the user to the payment.php page
     window.location.href = "payment.php";
+  }
+  function redirectToCommunityPage() {
+    // Redirect the user to the payment.php page
+    window.location.href = "community.php";
   }
 
 

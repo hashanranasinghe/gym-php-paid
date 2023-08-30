@@ -1,5 +1,7 @@
 <?php
-ob_start();
+
+session_start();
+
 
 include 'components/navbar.php';
 
@@ -117,5 +119,5 @@ if (isset($_POST['submit'])) {
         exit();
     }
 }
-ob_flush();
+
 ?>

@@ -1,4 +1,6 @@
 <?php
+ob_start();
+session_start();
 
 include "../form_handler.php"; ?>
 
@@ -144,6 +146,8 @@ include "../form_handler.php"; ?>
             header("location: http://localhost/gym/login/login.php");
             exit();
         }
+      }
     }
-}
+    ob_flush();
+    
 ?>

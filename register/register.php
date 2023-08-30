@@ -1,7 +1,9 @@
 <?php
 
 
-ob_start();
+session_start();
+
+
 
 include('../form_handler.php');
 
@@ -194,5 +196,5 @@ if (isset($_POST['submit'])) {
         exit();
     }
 }
-ob_flush();
+
 ?>

@@ -1,4 +1,9 @@
-<?php include 'components/navbar.php';
+<?php 
+
+session_start();
+
+
+include 'components/navbar.php';
 
 
 

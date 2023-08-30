@@ -10,23 +10,48 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
 
     <nav>
-        <a href="index.php">
-            <img src="images/logo.png" /></a>
-        <div class="nav-links" id="navlinks">
-            <i class="fa fa-times" onclick="hideMenu()"></i>
-            <ul>
-                <li><a href="index.php">HOME</a></li>
-              
-                <li><a href="about.php">ABOUT US</a></li>
-            </ul>
-        </div>
+      <div class="navClass">
+      <div>
+                <a href="index.php">
 
-        <i class="fa fa-bars" onclick="showMenu()"></i>
+                <img src="images/logo.png" /></a>
+            </div>
+            <div>
+                
+                
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+            </div>
+      </div>
+
+
+
+            <div class="nav-links" id="navlinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="index.php">HOME</a></li>
+                  
+                    <li><a href="community.php">COMMUNITY</a></li>
+                    <?php
+             
+                    if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] === 0 || $_SESSION['user_id'] === null){
+                        echo '<li><a href="login/login.php">LOG IN</a></li>';
+                    }else{
+                        echo ' <li><a href="about.php">ABOUT US</a></li>
+                        <li><a href="?logout=true">Logout</a></li>';
+                    }
+                    
+                    
+                    ?>
+                   
+                </ul>
+            </div>
     </nav>
     <script>
         var navlinks = document.getElementById("navlinks");
@@ -40,3 +65,29 @@
 
 
     </script>
+
+
+<?php
+
+
+// Logout function
+function logout() {
+
+    $_SESSION = array();
+
+
+    session_destroy();
+
+
+    header("Location: http://localhost/gym/login/login.php");
+    exit();
+}
+
+if (isset($_GET["logout"])) {
+    logout();
+}
+
+
+
+ob_flush();
+?>
