@@ -110,12 +110,12 @@ if (isset($_POST['submit'])) {
         <div class="alert alert-primary" role="alert">
         Ask information Successfully!
       </div>';
-        header('location: http://localhost/gym/advise.php');
+        header('location: http://localhost/gym/user/advise.php');
         exit();
     } else {
         $_SESSION['failInfo'] = '<div class="alert alert-danger" role="alert">
         Ask information Failed!  </div>';
-        header('location: http://localhost/gym/advise.php');
+        header('location: http://localhost/gym/user/advise.php');
         exit();
     }
 }

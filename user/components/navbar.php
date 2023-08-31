@@ -1,3 +1,7 @@
+<?php 
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -5,6 +9,7 @@
     <meta name="viewport" content="with=device-width, initial-scale=1.0" />
     <title>Fitness Center Website Design</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="styles/style.css" media="all" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -36,20 +41,10 @@
                 <i class="fa fa-times" onclick="hideMenu()"></i>
                 <ul>
                     <li><a href="index.php">HOME</a></li>
-                  
                     <li><a href="community.php">COMMUNITY</a></li>
-                    <?php
-             
-                    if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] === 0 || $_SESSION['user_id'] === null){
-                        echo '<li><a href="login/login.php">LOG IN</a></li>';
-                    }else{
-                        echo ' <li><a href="about.php">ABOUT US</a></li>
-                        <li><a href="?logout=true">Logout</a></li>';
-                    }
-                    
-                    
-                    ?>
-                   
+                        <li><a href="about.php">ABOUT US</a></li>
+                        <li><a href="exercise.php">My Exercises</a></li>
+                        <li><a href="?logout=true">Logout</a></li>
                 </ul>
             </div>
     </nav>

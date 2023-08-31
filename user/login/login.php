@@ -98,7 +98,7 @@ include "../form_handler.php"; ?>
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION["incorrectEmail"] =
             '<span class="fail">Invalid email format!</span>';
-        header("Location: http://localhost/gym/login/login.php");
+        header("Location: http://localhost/gym/user/login/login.php");
         exit();
     } else {
         $sql = "SELECT * FROM user WHERE email = '$email'";
@@ -117,7 +117,7 @@ include "../form_handler.php"; ?>
                 $_SESSION["user_name"] = $row["username"]; // Assuming the column name for the username is 'username' in your database
                 $_SESSION["user_email"] = $row["email"];
                 $_SESSION["user_id"] = $row["id"];
-                header("location: http://localhost/gym/contact.php");
+                header("location: http://localhost/gym/user/exercise.php");
                 exit();
             } else {
                 $_SESSION[

@@ -101,12 +101,12 @@ if (isset($_POST['submit'])) {
         <div class="alert alert-primary" role="alert">
         Add Comment Successfully!
       </div>';
-        header('location: http://localhost/gym/contact.php');
+        header('location: http://localhost/gym/user/contact.php');
         exit();
     } else {
         $_SESSION['failComment'] = '<div class="alert alert-danger" role="alert">
         Add comment Failed!  </div>';
-        header('location: http://localhost/gym/contact.php');
+        header('location: http://localhost/gym/user/contact.php');
         exit();
     }
 }

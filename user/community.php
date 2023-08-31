@@ -80,12 +80,12 @@ if (mysqli_num_rows($result) > 0) {
               <span aria-hidden="true">&times;</span>
             </button>
           </div>';
-            header('location: http://localhost/gym/community.php');
+            header('location: http://localhost/gym/user/community.php');
             exit();
         } else {
             // Deletion failed
             $_SESSION['failInfo'] = 'Failed to delete post.';
-            header('location: http://localhost/gym/community.php');
+            header('location: http://localhost/gym/user/community.php');
             exit();
         }
     }
