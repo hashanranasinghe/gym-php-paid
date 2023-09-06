@@ -130,7 +130,7 @@ include "../form_handler.php"; ?>
                   Invalid Email or Password!!
                 </div>
               </div>';
-                header("location: http://localhost/gym/login/login.php");
+                header("location: http://localhost/gym/user/login/login.php");
                 exit();
             }
         } else {
@@ -143,7 +143,7 @@ include "../form_handler.php"; ?>
                 User not registered!
                 </div>
               </div>';
-            header("location: http://localhost/gym/login/login.php");
+            header("location: http://localhost/gym/user/login/login.php");
             exit();
         }
       }

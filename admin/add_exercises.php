@@ -3,68 +3,66 @@
 include ("includes/db.php");
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>MyGym | Add Exercises</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyGym | Add Exercises</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
-<body bgcolor="#999999">
-	<form method="post" action="add_exercises.php" enctype="multipart/form-data">
-		<table width="794px" align="center" border="1" bgcolor="#f1533e">
-			<tr>
-				<td colspan="2" align="center"><h1>Insert Exercises</h1></td>
-			</tr>
-			<tr>
-				<td align="right"><b>Select User</b></td>
-				<td>
-					<select name="user">
-						<option>Select a User</option>
-						<?php
-						$get_user="SELECT * FROM user";
-						$run_user=mysqli_query($con, $get_user);
-						while($row_days=mysqli_fetch_array($run_user)){
-							$user_id=$row_days['id'];
-							$user_name=$row_days['username'];
-							echo "<option value='$user_id'>$user_name</option>";
-						}
-					?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td align="right"><b>Days</b></td>
-				<td>
-					<select name="day">
-						<option>Select a day</option>
-						<?php
-							$get_day="SELECT * FROM days";
-							$run_day=mysqli_query($con, $get_day);
-							while($row_days=mysqli_fetch_array($run_day)){
-								$day_id=$row_days['day_id'];
-								$day_name=$row_days['day_name'];
-								echo "<option value='$day_id'>$day_name</option>";
-							}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td align="right"><b>Name Of Exercise</b></td>
-				<td><input type="text" name="exercise"></td>
-			</tr>
-			
-			<tr>
-				<td align="right"><b>Number of Sets</b></td>
-				<td><input type="text" name="sets"></td>
-			</tr>
-			<tr>
-				<td align="right"><b>Exercise Image</b></td>
-				<td><input type="file" name="exer_img"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" name="insert_workout" value="Assign Workout"></td>
-			</tr>
-		</table>
-	</form>
+<body>
+
+<div class="container">
+  <h1>Add Exercises</h1>
+
+  <form method="post" action="add_exercises.php" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="user">Select User</label>
+      <select class="form-control" name="user">
+        <option>Select a User</option>
+        <?php
+          $get_user="SELECT * FROM user";
+          $run_user=mysqli_query($con, $get_user);
+          while($row_days=mysqli_fetch_array($run_user)){
+            $user_id=$row_days['id'];
+            $user_name=$row_days['username'];
+            echo "<option value='$user_id'>$user_name</option>";
+          }
+        ?>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="day">Days</label>
+      <select class="form-control" name="day">
+        <option>Select a day</option>
+        <?php
+          $get_day="SELECT * FROM days";
+          $run_day=mysqli_query($con, $get_day);
+          while($row_days=mysqli_fetch_array($run_day)){
+            $day_id=$row_days['day_id'];
+            $day_name=$row_days['day_name'];
+            echo "<option value='$day_id'>$day_name</option>";
+          }
+        ?>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exercise">Name Of Exercise</label>
+      <input type="text" class="form-control" id="exercise" name="exercise">
+    </div>
+    <div class="form-group">
+      <label for="sets">Number of Sets</label>
+      <input type="text" class="form-control" id="sets" name="sets">
+    </div>
+    <div class="form-group">
+      <label for="exer_img">Exercise Image</label>
+      <input type="file" class="form-control-file" id="exer_img" name="exer_img">
+    </div>
+    <button type="submit" class="btn btn-primary">Assign Workout</button>
+  </form>
+</div>
+
 </body>
 </html>
 

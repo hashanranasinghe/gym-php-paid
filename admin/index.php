@@ -63,8 +63,8 @@ include ("includes/db.php");
 
 
   <nav class="navbar navbar-light bg-light justify-content-between fixed-top">
-  <a class="navbar-brand">Navbar</a>
-  <a class="navbar-brand" href="logout.php">LOG OUT</a>
+  <a class="navbar-brand"><img src="assets/logo.png" height="50px"></a>
+  <a class="btn btn-danger" href="logout.php">LOG OUT</a>
 </nav>
   <!-- Navbar -->
 </header>

@@ -53,12 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span aria-hidden="true">&times;</span>
       </button>
     </div>';
-      header('location: http://localhost/gym/community.php');
+      header('location: http://localhost/gym/user/community.php');
       exit();
   } else {
       $_SESSION['failInfo'] = '<div class="alert alert-danger" role="alert">
     Failed!  </div>';
-      header('location: http://localhost/gym/community.php');
+      header('location: http://localhost/gym/user/community.php');
       exit();
   }
 }

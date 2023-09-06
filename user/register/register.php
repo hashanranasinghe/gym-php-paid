@@ -140,7 +140,7 @@ if (isset($_POST['submit'])) {
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $_SESSION['invalid'] = '<span class="fail"  style="padding: 5px 10px;
         color: red;">Invalid email format!</span>';
-        header('Location: http://localhost/gym/register/register.php');
+        header('Location: http://localhost/gym/user/register/register.php');
         exit();
     }
 
@@ -148,7 +148,7 @@ if (isset($_POST['submit'])) {
     if ($pass !== $cPass) {
         $_SESSION['password'] = '<span class="fail" style="padding: 5px 10px;
         color: red;">Passwords do not match!</span>';
-        header('Location: http://localhost/gym/register/register.php');
+        header('Location: http://localhost/gym/user/register/register.php');
         exit();
     }
 
@@ -170,7 +170,7 @@ if (isset($_POST['submit'])) {
     if ($count > 0) {
         $_SESSION['unSuccessful'] = '<span class="fail" style="padding: 5px 10px;
         color: red;">Email address already registered!</span>';
-        header('Location: http://localhost/gym/register/register.php');
+        header('Location: http://localhost/gym/user/register/register.php');
         exit();
     }
 
@@ -181,7 +181,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['accountCreated'] = '<div class="alert alert-primary" role="alert">'
         . $username . ' created!
       </div>';
-        header('Location: http://localhost/gym/login/login.php');
+        header('Location: http://localhost/gym/user/login/login.php');
         exit();
     } else {
         $_SESSION['unSuccessful'] = '<div class="alert alert-danger d-flex align-items-center" role="alert">
@@ -192,7 +192,7 @@ if (isset($_POST['submit'])) {
         . $username . ' failed!
         </div>
       </div>';
-        header('Location: http://localhost/gym/register/register.php');
+        header('Location: http://localhost/gym/user/register/register.php');
         exit();
     }
 }

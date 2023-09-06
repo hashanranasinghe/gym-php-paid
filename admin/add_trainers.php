@@ -3,49 +3,51 @@
 include ("includes/db.php");
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>MyGym | Add Trainers</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyGym | Add Trainers</title>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
-<body bgcolor="#999999">
-	<form method="post" action="add_trainers.php" enctype="multipart/form-data">
-		<table width="794px" align="center" border="1" bgcolor="#f1533e">
-			<tr>
-				<td colspan="2" align="center"><h1>Add New Trainer</h1></td>
-			</tr>
-			<tr>
-				<td align="right"><b>Name Of Trainer</b></td>
-				<td><input type="text" name="trainer_name"></td>
-			</tr>
-			<tr>
-				<td align="right"><b>Class</b></td>
-				<td>
-					<select name="trainer_class">
-						<option>Select a Class</option>
-						<?php
-							$get_exer="SELECT * FROM exercises";
-							$run_exer=mysqli_query($con, $get_exer);
-							while($row_exer=mysqli_fetch_array($run_exer)){
-								$exer_id=$row_exer['exer_id'];
-								$exer_name=$row_exer['exer_name'];
-								echo "<option value='$exer_name'>$exer_name</option>";
-							}
-						?>
-					</select>
-				</td>
-			</tr>
-			
-			<tr>
-				<td align="right"><b>Trainer Contact</b></td>
-				<td><input type="text" name="trainer_contact"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" name="add_trainer" value="Add Trainer"></td>
-			</tr>
-		</table>
-	</form>
+<body>
+
+<div class="container">
+  <h1>Add New Trainer</h1>
+
+  <form method="post" action="add_trainers.php" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="trainer_name">Name of Trainer</label>
+      <input type="text" class="form-control" id="trainer_name" name="trainer_name">
+    </div>
+    <div class="form-group">
+      <label for="trainer_class">Class</label>
+      <select class="form-control" name="trainer_class">
+        <option>Select a Class</option>
+        <?php
+          $get_exer="SELECT * FROM exercises";
+          $run_exer=mysqli_query($con, $get_exer);
+          while($row_exer=mysqli_fetch_array($run_exer)){
+            $exer_id=$row_exer['exer_id'];
+            $exer_name=$row_exer['exer_name'];
+            echo "<option value='$exer_name'>$exer_name</option>";
+          }
+        ?>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="trainer_contact">Trainer Contact</label>
+      <input type="text" class="form-control" id="trainer_contact" name="trainer_contact">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Trainer</button>
+  </form>
+</div>
+
 </body>
 </html>
+
 
 
 <?php 

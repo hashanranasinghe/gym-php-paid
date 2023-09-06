@@ -119,5 +119,5 @@ if (isset($_POST['submit'])) {
         exit();
     }
 }
-
+ob_flush();
 ?>

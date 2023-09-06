@@ -3,57 +3,57 @@
 include ("includes/db.php");
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>MyGym | Assign Trainer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyGym | Assign Trainer</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
-<body bgcolor="#999999">
-	<form method="post" action="assign_trainer.php" enctype="multipart/form-data">
-		<table width="794px" align="center" border="1" bgcolor="#f1533e">
-			<tr>
-				<td colspan="2" align="center"><h1>Assign Trainer</h1></td>
-			</tr>
-			<tr>
-				<td align="right"><b>Select User</b></td>
-				<td>
-					<select name="user">
-						<option>Select a User</option>
-						<?php
-						$get_user="SELECT * FROM user";
-						$run_user=mysqli_query($con, $get_user);
-						while($row_days=mysqli_fetch_array($run_user)){
-							$user_id=$row_days['id'];
-							$user_name=$row_days['username'];
-							echo "<option value='$user_id'>$user_name</option>";
-						}
-					?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td align="right"><b>Trainer</b></td>
-				<td>
-					<select name="trainer">
-						<option>Select a Trainer</option>
-						<?php
-							$get_trainer="SELECT * FROM trainer";
-							$run_trainer=mysqli_query($con, $get_trainer);
-							while($row_trainers=mysqli_fetch_array($run_trainer)){
-								$tran_id=$row_trainers['tran_id'];
-								$tran_name=$row_trainers['tran_name'];
-								echo "<option value='$tran_id'>$tran_name</option>";
-							}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" name="assign_trainer" value="Assign the Trainer"></td>
-			</tr>
-		</table>
-	</form>
+<body>
+
+<div class="container">
+  <h1>Assign Trainer</h1>
+
+  <form method="post" action="assign_trainer.php" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="user">Select User</label>
+      <select class="form-control" name="user">
+        <option>Select a User</option>
+        <?php
+          $get_user="SELECT * FROM user";
+          $run_user=mysqli_query($con, $get_user);
+          while($row_days=mysqli_fetch_array($run_user)){
+            $user_id=$row_days['id'];
+            $user_name=$row_days['username'];
+            echo "<option value='$user_id'>$user_name</option>";
+          }
+        ?>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="trainer">Trainer</label>
+      <select class="form-control" name="trainer">
+        <option>Select a Trainer</option>
+        <?php
+          $get_trainer="SELECT * FROM trainer";
+          $run_trainer=mysqli_query($con, $get_trainer);
+          while($row_trainers=mysqli_fetch_array($run_trainer)){
+            $tran_id=$row_trainers['tran_id'];
+            $tran_name=$row_trainers['tran_name'];
+            echo "<option value='$tran_id'>$tran_name</option>";
+          }
+        ?>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Assign the Trainer</button>
+  </form>
+</div>
+
 </body>
 </html>
+
 
 
 <?php 

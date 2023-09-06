@@ -23,77 +23,92 @@ $row_days=mysqli_fetch_array($run_day);
 $day_edit_name=$row_days['day_name'];
 
 
-$sel_user="SELECT * FROM user WHERE user_id='$user_id'";
+$sel_user="SELECT * FROM user WHERE id='$user_id'";
 $run_user=mysqli_query($con, $sel_user);
 $row_users=mysqli_fetch_array($run_user);
 
-$user_edit_name=$row_users['user_name'];
+$user_edit_name=$row_users['username'];
 
 ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>MyGym | Edit Exercises</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyGym | Edit Exercises</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
-<body bgcolor="#999999">
-	<form method="post" action="" enctype="multipart/form-data">
-		<table width="794px" align="center" border="1" bgcolor="#f1533e">
-			<tr>
-				<td colspan="2" align="center"><h1>Edit or Update Exercises</h1></td>
-			</tr>
-			<tr>
-				<td align="right"><b>User Name</b></td>
-				<td>
-					<select name="user">
-						<option value="<?php echo $user_id; ?>"><?php echo $user_edit_name; ?></option>
-						<?php
-						$get_user="SELECT * FROM users";
-						$run_user=mysqli_query($con, $get_user);
-						while($row_days=mysqli_fetch_array($run_user)){
-							$user_id=$row_days['user_id'];
-							$user_name=$row_days['user_name'];
-							echo "<option value='$user_id'>$user_name</option>";
-						}
-					?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td align="right"><b>Days</b></td>
-				<td>
-					<select name="day">
-						<option value="<?php echo $day_id; ?>"><?php echo $day_edit_name; ?></option>
-						<?php
-							$get_day="SELECT * FROM days";
-							$run_day=mysqli_query($con, $get_day);
-							while($row_days=mysqli_fetch_array($run_day)){
-								$day_id=$row_days['day_id'];
-								$day_name=$row_days['day_name'];
-								echo "<option value='$day_id'>$day_name</option>";
-							}
-						?>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td align="right"><b>Name Of Exercise</b></td>
-				<td><input type="text" name="exercise" value="<?php echo $exer_name; ?>"></td>
-			</tr>
-			
-			<tr>
-				<td align="right"><b>Number of Sets</b></td>
-				<td><input type="text" name="sets" value="<?php echo $sets; ?>"></td>
-			</tr>
-			<tr>
-				<td align="right"><b>Exercise Image</b></td>
-				<td><input type="file" name="exer_img"><br><img src="exercise_images/<?php echo $exer_img; ?>" width="60" height="44"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" name="update_workout" value="Update Workout"></td>
-			</tr>
-		</table>
-	</form>
+<body>
+
+<div class="container">
+  <h1>Edit Exercises</h1>
+
+  <form method="post" action="" enctype="multipart/form-data">
+    <div class="row">
+
+	<div class="col-md-6">
+    <div class="form-group">
+        <label for="user">User Name</label>
+        <select name="user" class="form-control">
+            <option value="<?php echo $user_id; ?>"><?php echo $user_edit_name; ?></option>
+            <?php
+            $get_users = "SELECT * FROM user";
+            $run_users = mysqli_query($con, $get_users);
+            while ($row_user = mysqli_fetch_array($run_users)) {
+                $loop_user_id = $row_user['id'];
+                $loop_user_name = $row_user['username'];
+                if ($loop_user_id != $user_id) {
+                    echo "<option value='$loop_user_id'>$loop_user_name</option>";
+                }
+            }
+            ?>
+        </select>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="form-group">
+        <label for="day">Days</label>
+        <select name="day" class="form-control">
+            <option value="<?php echo $day_id; ?>"><?php echo $day_edit_name; ?></option>
+            <?php
+            $get_days = "SELECT * FROM days";
+            $run_days = mysqli_query($con, $get_days);
+            while ($row_day = mysqli_fetch_array($run_days)) {
+                $loop_day_id = $row_day['day_id'];
+                $loop_day_name = $row_day['day_name'];
+                if ($loop_day_id != $day_id) {
+                    echo "<option value='$loop_day_id'>$loop_day_name</option>";
+                }
+            }
+            ?>
+        </select>
+    </div>
+</div>
+
+    </div>
+    <div class="form-group">
+      <label for="exercise">Name Of Exercise</label>
+      <input type="text" name="exercise" class="form-control" value="<?php echo $exer_name; ?>">
+    </div>
+    <div class="form-group">
+      <label for="sets">Number of Sets</label>
+      <input type="text" name="sets" class="form-control" value="<?php echo $sets; ?>">
+    </div>
+    <div class="form-group">
+      <label for="exer_img">Exercise Image</label>
+      <input type="file" name="exer_img">
+      <br>
+      <img src="exercise_images/<?php echo $exer_img; ?>" height="200px">
+    </div>
+    <input type="submit" name="update_workout" value="Update Workout" class="btn btn-primary">
+  </form>
+</div>
+
 </body>
 </html>
+
+
 
 
 <?php 
