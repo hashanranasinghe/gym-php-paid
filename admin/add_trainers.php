@@ -41,7 +41,7 @@ include ("includes/db.php");
       <label for="trainer_contact">Trainer Contact</label>
       <input type="text" class="form-control" id="trainer_contact" name="trainer_contact">
     </div>
-    <button type="submit" class="btn btn-primary">Add Trainer</button>
+    <button type="submit" class="btn btn-primary" name="add_trainer">Add Trainer</button>
   </form>
 </div>
 

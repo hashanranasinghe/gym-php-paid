@@ -47,7 +47,7 @@ include ("includes/db.php");
         ?>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Assign the Trainer</button>
+    <button type="submit" class="btn btn-primary" name="assign_trainer">Assign the Trainer</button>
   </form>
 </div>
 

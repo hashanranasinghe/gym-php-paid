@@ -59,7 +59,7 @@ include ("includes/db.php");
       <label for="exer_img">Exercise Image</label>
       <input type="file" class="form-control-file" id="exer_img" name="exer_img">
     </div>
-    <button type="submit" class="btn btn-primary">Assign Workout</button>
+    <button type="submit" class="btn btn-primary" name="insert_workout">Assign Workout</button>
   </form>
 </div>
 

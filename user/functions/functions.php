@@ -10,7 +10,7 @@
 		while($row_days=mysqli_fetch_array($run_days)){
 			$day_id=$row_days['day_id'];
 			$day_name=$row_days['day_name'];
-			echo "<li><a href='exercise.php?day=$day_id'>$day_name</a></li>";
+			echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action'>$day_name</a>";
 		}
 	}  //getdays function end
 

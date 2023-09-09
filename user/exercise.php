@@ -80,13 +80,13 @@ ob_flush();
 		
 		<div class="main_wrapper">
 
-			<div id="left_sidebar">
+		<div class="list-group">
 				
-					<ul id="days">
+				
 						<?php  
 							getDays();
 						?>
-					</ul>
+					
 			</div>
 
 			<div id="right_content">
