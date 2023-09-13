@@ -19,58 +19,48 @@ include ("functions/functions.php");
 <div id="sidebar_ftitle">My Trainer</div>
 
 <div id="right_content">
-		<div id="products_box" >
-		<?php
-$sql = "SELECT * FROM assigntrainer WHERE user_id = '$user_id'";
-$result = mysqli_query($con, $sql);
+    <div id="products_box">
+        <?php
+        $sql = "SELECT * FROM assigntrainer WHERE user_id = '$user_id'";
+        $result_outer = mysqli_query($con, $sql);
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $id = $row['id'];
-        $trainer_id = $row['trainer_id'];
-        $user_id = $row['user_id'];
-   
-		$trainerSql = "SELECT * FROM trainer WHERE tran_id = '$trainer_id'";
-		$result = mysqli_query($con, $trainerSql);
-        if (mysqli_num_rows($result) > 0) {
-			while ($row = mysqli_fetch_assoc($result)) {
-				$tran_id = $row['tran_id'];
-				$tran_name = $row['tran_name'];
-				$tran_class = $row['tran_class'];
-				$tran_contact = $row['tran_contact'];
-			
-				echo '
-				<div class="card">
-  <div class="card-header">
-    '.$tran_name .'
-  </div>
-  <div class="card-body">
-    <blockquote class="blockquote mb-0">
-      <p><strong>Trainer class:  </strong>'.$tran_class.'</p>
-	  <p><strong>Trainer contact Number:  </strong>'.$tran_contact.'</p>
-    </blockquote>
-  </div>
-</div>
+        if (mysqli_num_rows($result_outer) > 0) {
+            while ($row = mysqli_fetch_assoc($result_outer)) {
+                $id = $row['id'];
+                $trainer_id = $row['trainer_id'];
+                $user_id = $row['user_id'];
 
+                $trainerSql = "SELECT * FROM trainer WHERE tran_id = '$trainer_id'";
+                $result_inner = mysqli_query($con, $trainerSql);
+                if (mysqli_num_rows($result_inner) > 0) {
+                    while ($innerRow = mysqli_fetch_assoc($result_inner)) {
+                        $tran_id = $innerRow['tran_id'];
+                        $tran_name = $innerRow['tran_name'];
+                        $tran_class = $innerRow['tran_class'];
+                        $tran_contact = $innerRow['tran_contact'];
 
-				
-				';
-			}
-		}
-        
-    }
-    
-}
- else {
-    echo '<div class="post">No trainer available.</div>';
-}
-ob_flush();
-?>
-
-
-		</div>
+                        echo '
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">' . $tran_name . '</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><strong>Trainer class:  </strong>' . $tran_class . '</p>
+                                <p class="card-text"><strong>Trainer contact Number:  </strong>' . $tran_contact . '</p>
+                            </div>
+                        </div><br/>';
+                    }
+                }
+            }
+        } else {
+            echo '<div class="post">No trainer available.</div>';
+        }
+        ob_flush();
+        ?>
+    </div>
 </div>
 </div>
+
 	
 		
 <div class="line"></div>
