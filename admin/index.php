@@ -12,9 +12,15 @@ include ("includes/db.php");
 ?>
 <html>
 <head>
-	<title>MyGym | Index</title>
+	<title>My Gym</title>
 	<link rel="stylesheet" type="text/css" href="styles/style.css" media="all" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+  .list-group-item.active {
+    color: white; 
+  }
+</style>
+
 </head>
 <body>
 <!--Main Navigation-->
@@ -23,35 +29,31 @@ include ("includes/db.php");
   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a
-		href="index.php?view_users"
-          class="list-group-item list-group-item-action py-2 ripple"
-          aria-current="true"
-        >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>View Users</span>
-        </a>
-        <a href="index.php?view_trainers" class="list-group-item list-group-item-action py-2 ripple">
+	  <a href="index.php?view_users" class="list-group-item list-group-item-action py-2 ripple<?php if(isset($_GET['view_users'])) echo ' active'; ?>">
+  <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>View Users</span>
+</a>
+        <a href="index.php?view_trainers" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['view_trainers'])) echo ' active'; ?>">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>View Trainers</span>
         </a>
-		<a href="index.php?view_exercises" class="list-group-item list-group-item-action py-2 ripple"
+		<a href="index.php?view_exercises" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['view_exercises'])) echo ' active'; ?>"
 		  ><i class="fas fa-chart-line fa-fw me-3"></i><span>View Exercises</span></a
 		>
-        <a href="index.php?add_trainers" class="list-group-item list-group-item-action py-2 ripple"
+        <a href="index.php?add_trainers" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['add_trainers'])) echo ' active'; ?>"
           ><i class="fas fa-lock fa-fw me-3"></i><span>Add Trainers</span></a
         >
-		<a href="index.php?assign_trainer" class="list-group-item list-group-item-action py-2 ripple"
+		<a href="index.php?assign_trainer" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['assign_trainer'])) echo ' active'; ?>"
           ><i class="fas fa-lock fa-fw me-3"></i><span>Assign Trainer</span></a
         >
-        <a href="index.php?add_exercises" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="index.php?add_exercises" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['add_exercises'])) echo ' active'; ?>">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>Add Exercises</span>
         </a>
-		<a href="index.php?view_community" class="list-group-item list-group-item-action py-2 ripple">
+		<a href="index.php?view_community" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['view_community'])) echo ' active'; ?>">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>Community</span>
         </a>
-		<a href="index.php?view_advice" class="list-group-item list-group-item-action py-2 ripple">
+		<a href="index.php?view_advice" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['view_advice'])) echo ' active'; ?>">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>Asking Advices</span>
         </a>
-		<a href="index.php?view_info" class="list-group-item list-group-item-action py-2 ripple">
+		<a href="index.php?view_info" class="list-group-item list-group-item-action py-2 ripple <?php if(isset($_GET['view_info'])) echo ' active'; ?>">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>Asking Information</span>
         </a>
       </div>

@@ -6,7 +6,7 @@ include ("includes/db.php");
 ?>
 <html>
 <head>
-	<title>MyGym | Admin Login</title>
+	<title>Admin Login</title>
 	<link rel="stylesheet" type="text/css" href="styles/login.css">
 </head>
 <body>
