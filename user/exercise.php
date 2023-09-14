@@ -19,7 +19,7 @@ include ("functions/functions.php");
 <div id="sidebar_ftitle">My Trainer</div>
 
 <div id="right_content">
-    <div id="products_box">
+    <div id="products_box" class="row">
         <?php
         $sql = "SELECT * FROM assigntrainer WHERE user_id = '$user_id'";
         $result_outer = mysqli_query($con, $sql);
@@ -40,15 +40,17 @@ include ("functions/functions.php");
                         $tran_contact = $innerRow['tran_contact'];
 
                         echo '
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">' . $tran_name . '</h5>
+                        <div class="col-sm-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">' . $tran_name . '</h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text"><strong>Trainer class:  </strong>' . $tran_class . '</p>
+                                    <p class="card-text"><strong>Trainer contact Number:  </strong>' . $tran_contact . '</p>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <p class="card-text"><strong>Trainer class:  </strong>' . $tran_class . '</p>
-                                <p class="card-text"><strong>Trainer contact Number:  </strong>' . $tran_contact . '</p>
-                            </div>
-                        </div><br/>';
+                        </div>';
                     }
                 }
             }
@@ -61,22 +63,13 @@ include ("functions/functions.php");
 </div>
 </div>
 
-	
-		
 <div class="line"></div>
-
-
 <div id="sidebar_title">Days</div>
-		
 		<div class="main_wrapper">
-
 		<div class="list-group">
-				
-				
 						<?php  
 							getDays();
 						?>
-					
 			</div>
 
 			<div id="right_content">
@@ -90,10 +83,7 @@ include ("functions/functions.php");
 			</div>
 		</div>
 		
-	
-
-
-	
+	<br/>
+	<br/>
 </body>
-
 </html>

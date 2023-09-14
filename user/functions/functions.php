@@ -9,8 +9,17 @@
 		$run_days=mysqli_query($db, $get_days);
 		while($row_days=mysqli_fetch_array($run_days)){
 			$day_id=$row_days['day_id'];
-			$day_name=$row_days['day_name'];
-			echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action'>$day_name</a>";
+			$day_name=$row_days['day_name'];	
+			$day = $_GET['day'];
+			if($day_id == $day){
+				echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action btn-primary' style='background-color:blue !important; color:white' >$day_name</a>";
+
+			}
+			else{
+				echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action ' >$day_name</a>";
+
+			}
+
 		}
 	}  //getdays function end
 

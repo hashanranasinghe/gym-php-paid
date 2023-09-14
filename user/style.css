@@ -447,3 +447,8 @@ h3 {
   display: flex;
   padding-left: 10px;
 }
+
+.selected {
+  background-color: blue;
+  color: white;
+}
