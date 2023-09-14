@@ -3,25 +3,29 @@
 	$db=mysqli_connect("localhost","root","","gym");
 	
 	//getdays function start
-	function getDays(){
+	function getDays() {
 		global $db;
-		$get_days="SELECT * FROM days";
-		$run_days=mysqli_query($db, $get_days);
-		while($row_days=mysqli_fetch_array($run_days)){
-			$day_id=$row_days['day_id'];
-			$day_name=$row_days['day_name'];	
+		$get_days = "SELECT * FROM days";
+		$run_days = mysqli_query($db, $get_days);
+		
+		// Check if 'day' key is set in $_GET
+		if(isset($_GET['day'])) {
 			$day = $_GET['day'];
-			if($day_id == $day){
-				echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action btn-primary' style='background-color:blue !important; color:white' >$day_name</a>";
-
-			}
-			else{
-				echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action ' >$day_name</a>";
-
-			}
-
+		} else {
+			$day = ''; // Set a default value if 'day' is not set
 		}
-	}  //getdays function end
+		
+		while($row_days = mysqli_fetch_array($run_days)) {
+			$day_id = $row_days['day_id'];
+			$day_name = $row_days['day_name'];
+			
+			if($day_id == $day) {
+				echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action btn-primary' style='background-color: blue !important; color: white'>$day_name</a>";
+			} else {
+				echo "<a href='exercise.php?day=$day_id' class='list-group-item list-group-item-action'>$day_name</a>";
+			}
+		}
+	}//getdays function end
 
 
 	//getExercises function start

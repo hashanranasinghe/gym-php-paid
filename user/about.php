@@ -25,21 +25,21 @@
             </div>
         </section>
         <!-----------------about us content--------->
-        <?php include 'components/footer.php' ?>
-
-
+        
 
         
         
- 
-    
-
-
         
-
-     
-
-     
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
+   
 </html>

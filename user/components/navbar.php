@@ -43,6 +43,7 @@
                     <li><a href="index.php">HOME</a></li>
                     <li><a href="community.php">COMMUNITY</a></li>
                         <li><a href="about.php">ABOUT US</a></li>
+                        <li><a href="contact.php">Contact US</a></li>
                         <li><a href="exercise.php">My Exercises</a></li>
                         <li><a href="?logout=true">Logout</a></li>
                 </ul>

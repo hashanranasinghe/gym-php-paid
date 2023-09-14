@@ -76,8 +76,7 @@ include('form_handler.php');
         </div>
     </div>
 </section>
-<!-------Footer-------->
-<?php include 'components/footer.php' ?>
+
 
 
 </body>
